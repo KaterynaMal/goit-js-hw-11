@@ -111,6 +111,7 @@ function renderGallery(images) {
     info.classList.add('info');
 
     const infoItems = ['Likes', 'Views', 'Comments', 'Downloads'];
+
     const infoHTML = infoItems
       .map(
         item =>

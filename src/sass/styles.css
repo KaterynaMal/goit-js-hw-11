@@ -1,7 +1,7 @@
 body {
   font-family: 'Arial', sans-serif;
   margin: 0;
-  padding: 30px 20px;
+  padding: 45px 20px;
 }
 
 .search-form {
@@ -11,6 +11,25 @@ body {
   position: fixed;
   left: 40%;
   top: 0;
+}
+
+.search-form button {
+padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+}
+
+.search-form button:hover {
+    background-color: #2980b9;
+}
+
+input {
+    padding: 8px 20px;
+    font-size: 16px;
 }
 
 .gallery {
