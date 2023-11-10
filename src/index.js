@@ -5,7 +5,7 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 
 const API_KEY = '40574531-a84246791794da3cbc69c8a1d';
 const API_URL = 'https://pixabay.com/api/';
-const perPage = 10;
+const perPage = 20;
 
 const searchForm = document.querySelector('.search-form');
 const gallery = document.querySelector('.gallery');
@@ -16,9 +16,9 @@ const lightbox = new SimpleLightbox('.gallery a');
 let currentPage = 1;
 let currentQuery = '';
 
-searchForm.addEventListener('submit', onSearchQuery);
+searchForm.addEventListener('submit', onGettingImages);
 
-async function onSearchQuery(e) {
+async function onGettingImages(e) {
   e.preventDefault();
   const searchQuery = e.target.elements.searchQuery.value.trim();
 
@@ -37,6 +37,7 @@ async function onSearchQuery(e) {
       Notiflix.Notify.warning('Sorry, no images found.');
     } else {
       showLoadMoreBtn(images.totalHits);
+      Notiflix.Notify.info(`Hooray! We found ${images.totalHits} images.`);
       lightbox.refresh();
     }
   } catch (error) {
@@ -57,6 +58,13 @@ async function onLoadMore() {
         "We're sorry, but you've reached the end of search results."
       );
     }
+    const { height: cardHeight } =
+      gallery.firstElementChild.getBoundingClientRect();
+
+    window.scrollBy({
+      top: cardHeight * 1.3,
+      behavior: 'smooth',
+    });
   } catch (error) {
     console.error('Error fetching more images:', error);
     Notiflix.Notify.failure(
@@ -134,4 +142,3 @@ function showLoadMoreBtn(totalHits) {
 function hideLoadMoreBtn() {
   loadMoreBtn.style.display = 'none';
 }
-
